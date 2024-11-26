@@ -15,7 +15,7 @@
   },
   "servers": [
     {
-      "url": "http://estrella-demo09.vercel.app",
+      "url": "https://estrella-demo09.vercel.app",
       "variables": {},
       "description": "Production"
     }
