@@ -10,7 +10,7 @@ externalDocs:
   url: swagger.json
   description: swagger.json
 servers:
-  - url: https://demo-09-db-integration-taupe.vercel.app
+  - url: http://estrella-demo09.vercel.app/
     variables: {}
     description: Production
 paths:
