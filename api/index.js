@@ -1,3 +1,12 @@
+const fs = require('fs')
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yaml')
+
+const file  =  fs.readFileSync(process.cwd() + '/swagger.yaml', 'utf8')
+const swaggerDocument = YAML.parse(file)
+const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css"
+
+
 const { sql } = require('@vercel/postgres');
 require('dotenv').config();
 const express = require('express')
@@ -15,6 +24,12 @@ app.listen(process.env.PORT || PORT, () => {
 
 // const tasks // = [{ id: 1, name: 'Task 1', isDone: false }, { id: 2, name: 'Task 2', isDone: false }];
 // let taskId // = tasks.length;
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
+	customCss:
+		'.swagger-ui .opblock .opblock-summary-path-description-wrapper { align-items: center; display: flex; flex-wrap: wrap; gap: 0 10px; padding: 0 10px; width: 100%; }',
+	customCssUrl: CSS_URL,
+}));F
 
 // http://localhost:4000/tasks
 app.get('/tasks', async (req, res) => {
